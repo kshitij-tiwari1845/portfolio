@@ -6,76 +6,76 @@
 
 const portfolioProjects = [
   {
-    id: "neural-vision-segmentation",
-    title: "NeuroSeg: Real-Time Edge Segmentation",
-    category: "aiml",
-    categoryLabel: "AI / ML & Computer Vision",
-    shortDescription: "Lightweight semantic segmentation model optimized with TensorRT & ONNX for low-latency edge inference on embedded devices.",
+    id: "modern-analytics-dashboard",
+    title: "Interactive Analytics & Operations Dashboard",
+    category: "web",
+    categoryLabel: "Full Stack & Web Application",
+    shortDescription: "A high-performance modern web dashboard featuring real-time data visual metrics, user management, and seamless responsive design deployed on Vercel.",
     image: "assets/images/project-1.svg",
-    tags: ["PyTorch", "Python", "OpenCV", "TensorRT", "CUDA"],
-    liveUrl: "projects/neuroseg/index.html",
-    githubUrl: "https://github.com/yourusername/neuroseg",
+    tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Vercel"],
+    liveUrl: "https://dashboard-two-flax-98.vercel.app/",
+    githubUrl: "https://github.com/kshitij-tiwari1845",
     highlights: [
-      "Trained custom MobileNetV3-UNet architecture achieving 82.4% mIoU on benchmark dataset.",
-      "Quantized FP32 weights to INT8, decreasing inference latency from 45ms to 11ms on edge GPUs.",
-      "Engineered automated synthetic data augmentation pipeline boosting generalization."
+      "Designed and deployed a responsive analytics dashboard with modern modular UI components.",
+      "Optimized client-side rendering and asset delivery for fast load times on Vercel edge network.",
+      "Constructed clean interactive data charts, state handling, and accessible layout navigation."
     ],
-    architecture: "PyTorch training pipeline with automated ONNX export and high-throughput Python C++ binding inference wrapper.",
-    challenges: "Minimizing accuracy degradation during INT8 post-training quantization."
+    architecture: "Component-driven React/Next.js architecture with Tailwind CSS utility styling and Vercel edge deployment.",
+    challenges: "Building fluid responsive layouts and managing interactive client state without unnecessary re-renders."
   },
   {
     id: "algo-lens-visualizer",
     title: "AlgoLens: Interactive Algorithm Workbench",
     category: "systems",
-    categoryLabel: "Competitive Programming & Systems",
-    shortDescription: "High-performance interactive visualizer for graph algorithms, dynamic programming tables, and memory allocation graphs.",
+    categoryLabel: "Competitive Programming & DSA",
+    shortDescription: "Interactive workbench for graph traversal, dynamic programming tables, and algorithm execution tracing in C & Python.",
     image: "assets/images/project-3.svg",
-    tags: ["C++", "WebAssembly", "TypeScript", "React", "Canvas API"],
+    tags: ["C", "Python", "Data Structures", "Algorithms", "Canvas"],
     liveUrl: "projects/algolens/index.html",
-    githubUrl: "https://github.com/yourusername/algolens",
+    githubUrl: "https://github.com/kshitij-tiwari1845",
     highlights: [
-      "Compiled core C++ graph traversal and DP engines into WebAssembly for 60 FPS animation rendering.",
-      "Implemented step-by-step state rewind and memory pointer inspection.",
-      "Benchmarked execution performance against standard browser JavaScript engines with 4x speedup."
+      "Implemented core shortest-path and recursion tree visualizer with step-by-step state tracing.",
+      "Benchmarked memory footprint and time complexity against standard test cases.",
+      "Created interactive controls for stepping forward and inspecting vertex distances."
     ],
-    architecture: "C++ core compiled via Emscripten into WASM modules, rendered through an optimized HTML5 2D Canvas loop.",
-    challenges: "Handling bidirectional step-by-step state history without high memory allocation overhead."
+    architecture: "Modular algorithmic engine built with clean logic, state history arrays, and HTML5 Canvas rendering.",
+    challenges: "Visualizing complex recursive calls and graph cycles cleanly on screen."
+  },
+  {
+    id: "neural-vision-segmentation",
+    title: "NeuroSeg: Real-Time Edge Segmentation",
+    category: "aiml",
+    categoryLabel: "AI / ML & Computer Vision",
+    shortDescription: "Lightweight semantic segmentation experiments built with Python, PyTorch, and OpenCV exploring edge computer vision.",
+    image: "assets/images/project-2.svg",
+    tags: ["Python", "PyTorch", "OpenCV", "NumPy", "Machine Learning"],
+    liveUrl: "projects/neuroseg/index.html",
+    githubUrl: "https://github.com/kshitij-tiwari1845",
+    highlights: [
+      "Explored neural network architectures for computer vision and object mask segmentation.",
+      "Engineered automated data preprocessing and augmentation scripts in Python.",
+      "Analyzed model inference efficiency and metric trade-offs across validation sets."
+    ],
+    architecture: "Python training and evaluation scripts with automated dataset loaders and matrix evaluation utilities.",
+    challenges: "Managing matrix batch sizes to prevent memory overflows during feature extraction."
   },
   {
     id: "sentitrack-llm-monitor",
-    title: "SentiTrack: Multilingual Sentiment Hub",
+    title: "SentiTrack: NLP Sentiment Hub",
     category: "aiml",
-    categoryLabel: "AI / NLP & Transformers",
-    shortDescription: "Distributed NLP pipeline processing live social streams with transformer embeddings, topic modeling, and sentiment metrics.",
-    image: "assets/images/project-2.svg",
-    tags: ["Hugging Face", "Python", "FastAPI", "PostgreSQL", "Docker"],
-    liveUrl: "projects/sentitrack/index.html",
-    githubUrl: "https://github.com/yourusername/sentitrack",
-    highlights: [
-      "Fine-tuned RoBERTa transformer for domain-specific multi-class sentiment classification.",
-      "Built asynchronous ingestion worker pool using Celery & Redis to handle 5k requests/min.",
-      "Packaged end-to-end service into Docker containers for single-command orchestration."
-    ],
-    architecture: "FastAPI REST API with asynchronous transformer batch inference and PostgreSQL timeseries storage.",
-    challenges: "Balancing GPU batch sizing to achieve optimal throughput without exceeding VRAM bounds."
-  },
-  {
-    id: "devpulse-cloud-platform",
-    title: "CodeForge: Online Competitive Arena",
-    category: "web",
-    categoryLabel: "Full Stack & Web",
-    shortDescription: "Real-time collaborative code execution sandbox with custom sandboxed Docker runners and live socket feedback.",
+    categoryLabel: "AI / NLP & Python",
+    shortDescription: "Natural Language Processing experiments in Python exploring transformer tokenization, text embeddings, and sentiment classification.",
     image: "assets/images/project-4.svg",
-    tags: ["Node.js", "Docker", "WebSockets", "React", "Tailwind CSS"],
-    liveUrl: "projects/codeforge/index.html",
-    githubUrl: "https://github.com/yourusername/codeforge",
+    tags: ["Python", "NLP", "Scikit-Learn", "FastAPI", "Pandas"],
+    liveUrl: "projects/sentitrack/index.html",
+    githubUrl: "https://github.com/kshitij-tiwari1845",
     highlights: [
-      "Built isolated Linux container sandbox executing untrusted user code with CPU & memory limits.",
-      "Delivered instant execution test-case outputs through low-overhead WebSocket streams.",
-      "Engineered automated rating calculation engine implementing Glicko-2 algorithm."
+      "Built text tokenization and sentiment classification pipelines using Python NLP libraries.",
+      "Implemented clean data cleaning and vocabulary extraction algorithms.",
+      "Benchmarked inference confidence across diverse sentence categories."
     ],
-    architecture: "React frontend communicating with Node.js orchestrator and Docker daemon socket with strict cgroups isolation.",
-    challenges: "Securing multi-tenant container runtime against malicious system calls and fork-bombs."
+    architecture: "Python analytical scripts with matrix tokenizers and modular feature vector pipelines.",
+    challenges: "Handling multilingual and nuanced sentiment contexts effectively."
   }
 ];
 
