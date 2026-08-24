@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kshitij Tiwari — AI/ML Student & Builder</title>
+  <meta name="description" content="Personal portfolio of Kshitij Tiwari — AI/ML student, competitive programmer, and full-stack builder." />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Kshitij Tiwari — AI/ML Student & Builder" />
+  <meta property="og:description" content="AI/ML Student · Competitive Programmer · Builder" />
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+
+  <!-- Ambient Light Effects & Subtle Particle Canvas -->
+  <div class="ambient-glow-top"></div>
+  <div class="ambient-glow-bottom"></div>
+  <canvas id="particlesCanvas"></canvas>
+
+  <!-- ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-container">
+      
+      <!-- KT Monogram Brand Logo -->
+      <a href="#home" class="brand-logo" aria-label="Kshitij Tiwari Portfolio">
+        KT
+      </a>
+
+      <div class="nav-right-group">
+        <!-- Navigation Menu -->
+        <nav>
+          <ul class="nav-menu" id="navMenu">
+            <li><a href="#about" class="nav-link">about</a></li>
+            <li><a href="#skills" class="nav-link">skills</a></li>
+            <li><a href="#projects" class="nav-link">projects</a></li>
+            <li><a href="#connect" class="nav-link">connect</a></li>
+          </ul>
+        </nav>
+
+        <!-- GitHub Pill + Theme Switcher -->
+        <div class="nav-actions">
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn-github-nav">
+            <span>GitHub</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+
+          <!-- Sun / Moon Theme Toggle -->
+          <button type="button" class="btn-theme-toggle" id="themeToggleBtn" aria-label="Toggle Theme">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+
+          <!-- Mobile Toggle -->
+          <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+    <!-- ==========================================================================
+         HERO SECTION
+         ========================================================================== -->
+    <section class="hero-section" id="home">
+      <div class="container">
+        <div class="hero-grid">
+          
+          <!-- Left Column -->
+          <div class="hero-left-content reveal">
+            <span class="hero-comment-tag">// kshitij-tiwari</span>
+            
+            <h1 class="hero-headline">
+              Kshitij
+              <span class="name-highlight">Tiwari</span>
+            </h1>
+
+            <div class="hero-subtag">
+              AI/ML Student <span>·</span> Competitive Programmer <span>·</span> Builder
+            </div>
+
+            <p class="hero-description">
+              B.Tech AI/ML student (2025–2029) who spends more time inside a compiler than outside it. I like turning half-formed ideas into working code — from small ML experiments to competitive programming problems, solved one test case at a time.
+            </p>
+
+            <div class="hero-cta-group">
+              <a href="#projects" class="btn-hero-primary">View projects</a>
+              <a href="#connect" class="btn-hero-secondary">Let's connect</a>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive macOS Terminal -->
+          <div class="hero-right-visual reveal reveal-delay-2">
+            <div class="terminal-window">
+              <div class="terminal-header">
+                <div class="terminal-dots">
+                  <span class="term-dot red"></span>
+                  <span class="term-dot yellow"></span>
+                  <span class="term-dot green"></span>
+                </div>
+                <span class="terminal-title">kshitij@dev ~ zsh</span>
+              </div>
+              
+              <div class="terminal-body">
+                <!-- Command 1 -->
+                <div class="term-line">
+                  <span class="term-prompt">$</span>
+                  <span class="term-cmd">whoami</span>
+                </div>
+                <div class="term-line term-output">
+                  kshitij-tiwari
+                </div>
+
+                <!-- Command 2 -->
+                <div class="term-line" style="margin-top: 1.25rem;">
+                  <span class="term-prompt">$</span>
+                  <span class="term-cmd">cat interests.txt</span>
+                </div>
+                <div class="term-line term-output">
+                  machine learning
+                </div>
+                <div class="term-line term-output">
+                  competitive programming
+                </div>
+                <div class="term-line term-output">
+                  building things
+                </div>
+
+                <!-- Active Typing Command -->
+                <div class="term-line" style="margin-top: 1.25rem;">
+                  <span class="term-prompt">$</span>
+                  <span class="term-cmd" id="termCmdInput">sta</span><span class="term-cursor"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         ABOUT SECTION
+         ========================================================================== -->
+    <section class="about-section" id="about">
+      <div class="container">
+        
+        <div class="section-header reveal">
+          <span class="section-comment">// 01. about</span>
+          <h2 class="section-title">Background & Philosophy</h2>
+          <p class="section-subtitle">A deep dive into my academic path, algorithmic interests, and what drives my engineering curiosities.</p>
+        </div>
+
+        <div class="about-grid">
+          
+          <div class="about-card reveal">
+            <div class="about-text">
+              <p>
+                I'm pursuing my B.Tech in Artificial Intelligence & Machine Learning (2025–2029). My focus centers on deep neural architectures, high-performance algorithm implementations in C++, and creating responsive full-stack applications.
+              </p>
+              <p>
+                Whether it's optimizing edge models for real-time computer vision or analyzing time complexities on dynamic programming problems, I prioritize clarity, mathematical rigor, and reproducible code.
+              </p>
+            </div>
+
+            <div class="stats-bar-grid">
+              <div class="stat-pill">
+                <div class="stat-val">500+</div>
+                <div class="stat-desc">DSA Problems Solved</div>
+              </div>
+              <div class="stat-pill">
+                <div class="stat-val">2025-29</div>
+                <div class="stat-desc">B.Tech AI/ML</div>
+              </div>
+              <div class="stat-pill">
+                <div class="stat-val">15+</div>
+                <div class="stat-desc">Projects Shipped</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-card-list reveal reveal-delay-2">
+            
+            <div class="timeline-item-box">
+              <div class="timeline-item-header">
+                <h4 class="timeline-role-title">B.Tech in AI & ML</h4>
+                <span class="timeline-date-tag">2025 — 2029</span>
+              </div>
+              <div class="timeline-org">Undergraduate Degree</div>
+              <p class="timeline-text">Focusing on Machine Learning, Deep Neural Networks, Data Structures, Algorithms, Computer Architecture, and Linear Algebra.</p>
+            </div>
+
+            <div class="timeline-item-box">
+              <div class="timeline-item-header">
+                <h4 class="timeline-role-title">Competitive Programming</h4>
+                <span class="timeline-date-tag">Active</span>
+              </div>
+              <div class="timeline-org">LeetCode & Codeforces</div>
+              <p class="timeline-text">Regularly practicing contest algorithms with emphasis on Graphs, Trees, Dynamic Programming, and Bit Manipulation in C++.</p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SKILLS SECTION
+         ========================================================================== -->
+    <section class="skills-section" id="skills">
+      <div class="container">
+        
+        <div class="section-header reveal">
+          <span class="section-comment">// 02. skills</span>
+          <h2 class="section-title">Technical Proficiency</h2>
+          <p class="section-subtitle">Languages, AI/ML frameworks, systems, and tools I use on a daily basis.</p>
+        </div>
+
+        <div class="skills-grid">
+          
+          <!-- Category 1: AI & ML -->
+          <div class="skill-box reveal">
+            <div class="skill-box-header">
+              <div class="skill-box-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path><path d="M12 6v6l4 2"></path></svg>
+              </div>
+              <h3 class="skill-box-title">AI / ML & Data</h3>
+            </div>
+            <div class="skill-tags-flex">
+              <span class="skill-tag-chip">PyTorch</span>
+              <span class="skill-tag-chip">TensorFlow</span>
+              <span class="skill-tag-chip">Scikit-Learn</span>
+              <span class="skill-tag-chip">OpenCV</span>
+              <span class="skill-tag-chip">NumPy / Pandas</span>
+              <span class="skill-tag-chip">Hugging Face</span>
+            </div>
+          </div>
+
+          <!-- Category 2: Languages & CP -->
+          <div class="skill-box reveal reveal-delay-1">
+            <div class="skill-box-header">
+              <div class="skill-box-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+              </div>
+              <h3 class="skill-box-title">Languages & DSA</h3>
+            </div>
+            <div class="skill-tags-flex">
+              <span class="skill-tag-chip">C++ (STL)</span>
+              <span class="skill-tag-chip">Python 3</span>
+              <span class="skill-tag-chip">C</span>
+              <span class="skill-tag-chip">Java</span>
+              <span class="skill-tag-chip">Data Structures</span>
+              <span class="skill-tag-chip">Algorithms</span>
+            </div>
+          </div>
+
+          <!-- Category 3: Web Engineering -->
+          <div class="skill-box reveal reveal-delay-2">
+            <div class="skill-box-header">
+              <div class="skill-box-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              </div>
+              <h3 class="skill-box-title">Web Engineering</h3>
+            </div>
+            <div class="skill-tags-flex">
+              <span class="skill-tag-chip">JavaScript (ES6+)</span>
+              <span class="skill-tag-chip">TypeScript</span>
+              <span class="skill-tag-chip">React.js</span>
+              <span class="skill-tag-chip">Node.js</span>
+              <span class="skill-tag-chip">HTML5 / CSS3</span>
+              <span class="skill-tag-chip">Tailwind CSS</span>
+            </div>
+          </div>
+
+          <!-- Category 4: Tools & Systems -->
+          <div class="skill-box reveal reveal-delay-3">
+            <div class="skill-box-header">
+              <div class="skill-box-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+              </div>
+              <h3 class="skill-box-title">Tools & Cloud</h3>
+            </div>
+            <div class="skill-tags-flex">
+              <span class="skill-tag-chip">Git & GitHub</span>
+              <span class="skill-tag-chip">Linux / Bash</span>
+              <span class="skill-tag-chip">Docker</span>
+              <span class="skill-tag-chip">VS Code</span>
+              <span class="skill-tag-chip">Vercel</span>
+              <span class="skill-tag-chip">PostgreSQL</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         PROJECTS SECTION
+         ========================================================================== -->
+    <section class="projects-section" id="projects">
+      <div class="container">
+        
+        <div class="section-header reveal">
+          <span class="section-comment">// 03. projects</span>
+          <h2 class="section-title">Selected Projects</h2>
+          <p class="section-subtitle">Real-world AI/ML models, algorithmic tools, and web applications I've engineered.</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="project-filter-tabs reveal">
+          <button type="button" class="filter-tab active" data-filter="all">all</button>
+          <button type="button" class="filter-tab" data-filter="aiml">ai / ml</button>
+          <button type="button" class="filter-tab" data-filter="systems">systems & cp</button>
+          <button type="button" class="filter-tab" data-filter="web">full stack</button>
+        </div>
+
+        <!-- Dynamic Grid Container -->
+        <div class="projects-grid-list" id="projectsGridList">
+          <!-- Rendered dynamically via js/main.js -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         CONNECT / CONTACT SECTION
+         ========================================================================== -->
+    <section class="connect-section" id="connect">
+      <div class="container">
+        
+        <div class="section-header reveal">
+          <span class="section-comment">// 04. connect</span>
+          <h2 class="section-title">Let's Connect</h2>
+          <p class="section-subtitle">Have an opportunity, want to collaborate on an ML project, or discuss algorithm solutions? Reach out!</p>
+        </div>
+
+        <div class="connect-grid">
+          
+          <!-- Social Cards & Email Copy -->
+          <div class="social-link-cards reveal">
+            
+            <!-- GitHub -->
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-link-card">
+              <div class="social-card-brand">
+                <div class="social-brand-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                </div>
+                <div class="social-brand-info">
+                  <h4>GitHub</h4>
+                  <p>Check out repositories & source code</p>
+                </div>
+              </div>
+              <span style="color: var(--text-muted); font-family: var(--font-mono); font-size: 0.85rem;">↗</span>
+            </a>
+
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link-card">
+              <div class="social-card-brand">
+                <div class="social-brand-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </div>
+                <div class="social-brand-info">
+                  <h4>LinkedIn</h4>
+                  <p>Let's connect professionally</p>
+                </div>
+              </div>
+              <span style="color: var(--text-muted); font-family: var(--font-mono); font-size: 0.85rem;">↗</span>
+            </a>
+
+            <!-- Email Copy Box -->
+            <div class="email-copy-panel">
+              <span class="email-copy-text" id="userEmailText">kshitij.tiwari.dev@gmail.com</span>
+              <button type="button" class="btn-copy-email" id="copyEmailBtn">copy_email</button>
+            </div>
+
+          </div>
+
+          <!-- Contact Form -->
+          <div class="contact-form-panel reveal reveal-delay-2">
+            <form id="contactForm">
+              <div class="input-group">
+                <label for="senderName" class="input-label">// your_name</label>
+                <input type="text" id="senderName" class="input-field" placeholder="Jane Doe" required />
+              </div>
+
+              <div class="input-group">
+                <label for="senderEmail" class="input-label">// your_email</label>
+                <input type="email" id="senderEmail" class="input-field" placeholder="jane@example.com" required />
+              </div>
+
+              <div class="input-group">
+                <label for="senderMessage" class="input-label">// message</label>
+                <textarea id="senderMessage" class="input-field" placeholder="Hello Kshitij, I'd like to talk about..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn-hero-primary" style="width: 100%;">
+                send_message()
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>© 2026 Kshitij Tiwari. Built with code.</p>
+        <a href="#home" class="btn-copy-email">return_to_top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       PROJECT DETAIL MODAL
+       ========================================================================== -->
+  <div class="modal-backdrop" id="projectModal">
+    <div class="modal-box">
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/projects-data.js"></script>
+  <script src="js/modal.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

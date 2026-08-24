@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" fill="none">
+  <defs>
+    <linearGradient id="bgGrad4" x1="0" y1="0" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B0F17"/>
+      <stop offset="1" stop-color="#141A29"/>
+    </linearGradient>
+    <pattern id="gridPattern4" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bgGrad4)"/>
+  <rect width="800" height="500" fill="url(#gridPattern4)"/>
+
+  <!-- Window Container -->
+  <rect x="40" y="35" width="720" height="430" rx="14" fill="#0F1420" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.5"/>
+  
+  <!-- Window Bar -->
+  <path d="M 40 49 C 40 41.268 46.268 35 54 35 L 746 35 C 753.732 35 760 41.268 760 49 L 760 75 L 40 75 Z" fill="#141A29" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.5"/>
+  <circle cx="65" cy="55" r="4.5" fill="#EF4444"/>
+  <circle cx="80" cy="55" r="4.5" fill="#F59E0B"/>
+  <circle cx="95" cy="55" r="4.5" fill="#10B981"/>
+  <text x="400" y="59" fill="#94A3B8" font-family="'JetBrains Mono', monospace" font-size="11" text-anchor="middle">codeforge_sandbox.sh // Isolated Container Runtime</text>
+
+  <!-- Left Side: Code Editor -->
+  <rect x="65" y="95" width="380" height="340" rx="10" fill="#080B11" stroke="rgba(255, 255, 255, 0.06)"/>
+  
+  <text x="85" y="125" fill="#64748B" font-family="'JetBrains Mono', monospace" font-size="11">1  <tspan fill="#38BDF8">#include</tspan> <tspan fill="#A7F3D0">&lt;iostream&gt;</tspan></text>
+  <text x="85" y="145" fill="#64748B" font-family="'JetBrains Mono', monospace" font-size="11">2  <tspan fill="#38BDF8">#include</tspan> <tspan fill="#A7F3D0">&lt;vector&gt;</tspan></text>
+  <text x="85" y="165" fill="#64748B" font-family="'JetBrains Mono', monospace" font-size="11">3  <tspan fill="#F472B6">using namespace</tspan> std;</text>
+  <text x="85" y="185" fill="#64748B" font-family="'JetBrains Mono', monospace" font-size="11">4  </text>
+  <text x="85" y="205" fill="#64748B" font-family="'JetBrains Mono', monospace" font-size="11">5  <tspan fill="#60A5FA">int</tspan> <tspan fill="#FBBF24">main</tspan>() {</text>
+  <text x="85" y="225" fill="#64748B" font-family="'JetBrains Mono', monospace" font-size="11">6      ios_base::sync_with_stdio(0);</text>
+  <text x="85" y="245" fill="#64748B" font-family="'JetBrains Mono', monospace" font-size="11">7      cin.tie(NULL);</text>
+  <text x="85" y="265" fill="#64748B" font-family="'JetBrains Mono', monospace" font-size="11">8      cout &lt;&lt; <tspan fill="#A7F3D0">"ACCEPTED (0.02s)"</tspan> &lt;&lt; endl;</text>
+  <text x="85" y="285" fill="#64748B" font-family="'JetBrains Mono', monospace" font-size="11">9      <tspan fill="#F472B6">return</tspan> 0;</text>
+  <text x="85" y="305" fill="#64748B" font-family="'JetBrains Mono', monospace" font-size="11">10 }</text>
+
+  <rect x="85" y="380" width="340" height="36" rx="6" fill="#6366F1"/>
+  <text x="255" y="403" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">Execute in Sandbox ⚡</text>
+
+  <!-- Right Side: Docker Runner Status -->
+  <rect x="465" y="95" width="270" height="340" rx="10" fill="#080B11" stroke="rgba(255, 255, 255, 0.06)"/>
+  <text x="485" y="125" fill="#818CF8" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="600">// TEST SUITE RESULTS</text>
+
+  <rect x="485" y="145" width="230" height="45" rx="6" fill="#141A29"/>
+  <circle cx="505" cy="167" r="5" fill="#10B981"/>
+  <text x="520" y="172" fill="#F8FAFC" font-family="'JetBrains Mono', monospace" font-size="11">Test 1: PASSED (12ms)</text>
+
+  <rect x="485" y="200" width="230" height="45" rx="6" fill="#141A29"/>
+  <circle cx="505" cy="222" r="5" fill="#10B981"/>
+  <text x="520" y="227" fill="#F8FAFC" font-family="'JetBrains Mono', monospace" font-size="11">Test 2: PASSED (18ms)</text>
+
+  <rect x="485" y="255" width="230" height="45" rx="6" fill="#141A29"/>
+  <circle cx="505" cy="277" r="5" fill="#10B981"/>
+  <text x="520" y="282" fill="#F8FAFC" font-family="'JetBrains Mono', monospace" font-size="11">Test 3: PASSED (21ms)</text>
+
+  <rect x="485" y="315" width="230" height="100" rx="6" fill="#0A0D14"/>
+  <text x="495" y="340" fill="#10B981" font-family="'JetBrains Mono', monospace" font-size="10">Verdict: ACCEPTED</text>
+  <text x="495" y="365" fill="#CBD5E1" font-family="'JetBrains Mono', monospace" font-size="10">Time: 0.02s · Mem: 4.8MB</text>
+  <text x="495" y="390" fill="#818CF8" font-family="'JetBrains Mono', monospace" font-size="10">cgroups: CPU &lt; 50%, VRAM &lt; 64MB</text>
+</svg>

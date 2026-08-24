@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" fill="none">
+  <defs>
+    <linearGradient id="bgGrad1" x1="0" y1="0" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B0F17"/>
+      <stop offset="1" stop-color="#141A29"/>
+    </linearGradient>
+    <linearGradient id="neonGrad1" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#6366F1"/>
+      <stop offset="1" stop-color="#10B981"/>
+    </linearGradient>
+    <pattern id="gridPattern1" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="url(#bgGrad1)"/>
+  <rect width="800" height="500" fill="url(#gridPattern1)"/>
+
+  <!-- Window Container -->
+  <rect x="40" y="35" width="720" height="430" rx="14" fill="#0F1420" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.5"/>
+  
+  <!-- Window Bar -->
+  <path d="M 40 49 C 40 41.268 46.268 35 54 35 L 746 35 C 753.732 35 760 41.268 760 49 L 760 75 L 40 75 Z" fill="#141A29" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.5"/>
+  <circle cx="65" cy="55" r="4.5" fill="#EF4444"/>
+  <circle cx="80" cy="55" r="4.5" fill="#F59E0B"/>
+  <circle cx="95" cy="55" r="4.5" fill="#10B981"/>
+  <text x="400" y="59" fill="#94A3B8" font-family="'JetBrains Mono', monospace" font-size="11" text-anchor="middle">neuroseg_inference_v3.py (TensorRT INT8)</text>
+
+  <!-- Vision / Bounding Box & Neural Mesh Display -->
+  <!-- Left Side: Vision Feed -->
+  <rect x="65" y="95" width="370" height="340" rx="10" fill="#080B11" stroke="rgba(255, 255, 255, 0.06)"/>
+  
+  <!-- Camera Grid & Detection Boxes -->
+  <rect x="95" y="125" width="140" height="180" rx="6" fill="none" stroke="#6366F1" stroke-width="2" stroke-dasharray="4 2"/>
+  <rect x="95" y="105" width="90" height="18" rx="3" fill="#6366F1"/>
+  <text x="100" y="118" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700">TARGET 0.98</text>
+
+  <rect x="255" y="160" width="150" height="130" rx="6" fill="none" stroke="#10B981" stroke-width="2"/>
+  <rect x="255" y="142" width="80" height="18" rx="3" fill="#10B981"/>
+  <text x="260" y="155" fill="#064E3B" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700">MASK 0.94</text>
+
+  <circle cx="210" cy="220" r="4" fill="#F59E0B"/>
+  <circle cx="330" cy="225" r="4" fill="#38BDF8"/>
+  <line x1="210" y1="220" x2="330" y2="225" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="3 3"/>
+
+  <text x="80" y="415" fill="#10B981" font-family="'JetBrains Mono', monospace" font-size="11">FPS: 89.4 · Ingest: 11.2ms · CUDA: 98%</text>
+
+  <!-- Right Side: Layer Activations -->
+  <rect x="455" y="95" width="280" height="340" rx="10" fill="#080B11" stroke="rgba(255, 255, 255, 0.06)"/>
+  <text x="475" y="125" fill="#818CF8" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="600">// LAYER METRICS</text>
+
+  <!-- Metric 1 -->
+  <text x="475" y="160" fill="#94A3B8" font-family="'JetBrains Mono', monospace" font-size="10">Conv2d_1 (32x32)</text>
+  <rect x="475" y="170" width="240" height="8" rx="4" fill="rgba(255, 255, 255, 0.08)"/>
+  <rect x="475" y="170" width="210" height="8" rx="4" fill="#6366F1"/>
+
+  <!-- Metric 2 -->
+  <text x="475" y="210" fill="#94A3B8" font-family="'JetBrains Mono', monospace" font-size="10">Bottleneck_Res (64x64)</text>
+  <rect x="475" y="220" width="240" height="8" rx="4" fill="rgba(255, 255, 255, 0.08)"/>
+  <rect x="475" y="220" width="185" height="8" rx="4" fill="#38BDF8"/>
+
+  <!-- Metric 3 -->
+  <text x="475" y="260" fill="#94A3B8" font-family="'JetBrains Mono', monospace" font-size="10">UNet_Decoder (128x128)</text>
+  <rect x="475" y="270" width="240" height="8" rx="4" fill="rgba(255, 255, 255, 0.08)"/>
+  <rect x="475" y="270" width="230" height="8" rx="4" fill="#10B981"/>
+
+  <!-- Log Box -->
+  <rect x="475" y="305" width="240" height="110" rx="6" fill="#0A0D14" stroke="rgba(255, 255, 255, 0.04)"/>
+  <text x="485" y="330" fill="#10B981" font-family="'JetBrains Mono', monospace" font-size="10">[OK] Model compiled</text>
+  <text x="485" y="350" fill="#CBD5E1" font-family="'JetBrains Mono', monospace" font-size="10">[INFO] Weights INT8 quantized</text>
+  <text x="485" y="370" fill="#F59E0B" font-family="'JetBrains Mono', monospace" font-size="10">[WARN] Memory p99: 420MB</text>
+  <text x="485" y="390" fill="#818CF8" font-family="'JetBrains Mono', monospace" font-size="10">[EXEC] Stream active...</text>
+</svg>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodeForge — Isolated Code Execution Sandbox Demo</title>
+  <link rel="stylesheet" href="../../css/style.css" />
+  <link rel="stylesheet" href="../../css/animations.css" />
+  <style>
+    body { padding-top: 2rem; }
+    .demo-container { max-width: 1080px; margin: 0 auto; padding: 1.5rem; }
+    .demo-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-subtle); }
+    .demo-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 2rem; }
+    .editor-panel { background: #080B11; border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 1.5rem; }
+    .console-panel { background: var(--bg-surface); border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 1.5rem; }
+    .code-area { width: 100%; height: 260px; background: #05070A; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); color: #38BDF8; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; padding: 1rem; line-height: 1.6; resize: vertical; }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    <div class="demo-header">
+      <div>
+        <a href="../../index.html" class="btn-copy-email" style="display: inline-block; margin-bottom: 0.5rem;">← Back to Portfolio</a>
+        <h1 style="font-size: 1.8rem; font-weight: 800; color: var(--text-primary);">CodeForge: Isolated Execution Sandbox</h1>
+        <p style="color: var(--text-secondary); font-size: 0.95rem;">Real-Time Docker Container Sandbox & Test Runner</p>
+      </div>
+      <div style="font-family: var(--font-mono); color: #10B981; font-size: 0.85rem;">[RUNNER ACTIVE]</div>
+    </div>
+
+    <div class="demo-grid">
+      <!-- Code Editor -->
+      <div class="editor-panel">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+          <span style="font-family: var(--font-mono); font-size: 0.85rem; color: #818CF8;">// solution.cpp (C++20 GCC)</span>
+          <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #94A3B8;">Memory limit: 256MB</span>
+        </div>
+        <textarea id="codeEditor" class="code-area">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;numeric&gt;
+
+using namespace std;
+
+int main() {
+    vector&lt;int&gt; nums = {2, 7, 11, 15};
+    int target = 9;
+    
+    cout &lt;&lt; "Target: " &lt;&lt; target &lt;&lt; " | Elements: [2, 7]" &lt;&lt; endl;
+    cout &lt;&lt; "Test Case 1 Passed!" &lt;&lt; endl;
+    return 0;
+}</textarea>
+        <button type="button" class="btn-hero-primary" id="runCodeBtn" style="margin-top: 1rem; width: 100%;">
+          Execute Code in Sandbox ⚡
+        </button>
+      </div>
+
+      <!-- Execution Output Console -->
+      <div class="console-panel">
+        <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1rem;">Execution Output</h3>
+
+        <div id="outputConsole" style="background: #080B11; border: 1px solid var(--border-subtle); border-radius: 6px; padding: 1rem; height: 160px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; overflow-y: auto;">
+          <div style="color: #10B981;">[STATUS] Container instantiated (ID: #d82f91)</div>
+          <div style="color: #F8FAFC; margin-top: 0.5rem;">Target: 9 | Elements: [2, 7]</div>
+          <div style="color: #F8FAFC;">Test Case 1 Passed!</div>
+          <div style="color: #10B981; margin-top: 0.5rem;">[VERDICT] ACCEPTED (0.02s · 4.8MB)</div>
+        </div>
+
+        <div style="margin-top: 1.25rem; font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted);">
+          <div>Container CPU: <span style="color: #10B981;">0.8%</span></div>
+          <div>Sandboxing: <span style="color: #818CF8;">Linux cgroups + seccomp</span></div>
+        </div>
+
+        <a href="https://github.com/yourusername/codeforge" target="_blank" rel="noopener noreferrer" class="btn-hero-secondary" style="margin-top: 1.5rem; width: 100%; text-align: center; display: block;">
+          GitHub Repository ↗
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("runCodeBtn").onclick = () => {
+      const consoleEl = document.getElementById("outputConsole");
+      consoleEl.innerHTML = '<div style="color: #F59E0B;">[RUNNING] Compiling with g++ -O3 ...</div>';
+
+      setTimeout(() => {
+        consoleEl.innerHTML = `
+          <div style="color: #10B981;">[STATUS] Compilation success (0.04s)</div>
+          <div style="color: #38BDF8;">[CONTAINER] Sandboxed runner spawned in isolated cgroup</div>
+          <div style="color: #F8FAFC; margin-top: 0.4rem;">Target: 9 | Elements: [2, 7]</div>
+          <div style="color: #F8FAFC;">Test Case 1 Passed!</div>
+          <div style="color: #10B981; margin-top: 0.4rem;">[VERDICT] ACCEPTED (0.02s · 4.8MB)</div>
+        `;
+      }, 500);
+    };
+  </script>
+</body>
+</html>

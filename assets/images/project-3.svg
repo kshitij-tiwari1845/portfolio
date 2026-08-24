@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" fill="none">
+  <defs>
+    <linearGradient id="bgGrad3" x1="0" y1="0" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B0F17"/>
+      <stop offset="1" stop-color="#141A29"/>
+    </linearGradient>
+    <pattern id="gridPattern3" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bgGrad3)"/>
+  <rect width="800" height="500" fill="url(#gridPattern3)"/>
+
+  <!-- Window Container -->
+  <rect x="40" y="35" width="720" height="430" rx="14" fill="#0F1420" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.5"/>
+  
+  <!-- Window Bar -->
+  <path d="M 40 49 C 40 41.268 46.268 35 54 35 L 746 35 C 753.732 35 760 41.268 760 49 L 760 75 L 40 75 Z" fill="#141A29" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.5"/>
+  <circle cx="65" cy="55" r="4.5" fill="#EF4444"/>
+  <circle cx="80" cy="55" r="4.5" fill="#F59E0B"/>
+  <circle cx="95" cy="55" r="4.5" fill="#10B981"/>
+  <text x="400" y="59" fill="#94A3B8" font-family="'JetBrains Mono', monospace" font-size="11" text-anchor="middle">algolens.wasm // Dijkstra & DP Visualizer</text>
+
+  <!-- Left Side: Graph Visualization Canvas -->
+  <rect x="65" y="95" width="380" height="340" rx="10" fill="#080B11" stroke="rgba(255, 255, 255, 0.06)"/>
+  
+  <!-- Graph Nodes -->
+  <line x1="120" y1="160" x2="220" y2="140" stroke="#6366F1" stroke-width="2"/>
+  <line x1="120" y1="160" x2="160" y2="280" stroke="#6366F1" stroke-width="2"/>
+  <line x1="220" y1="140" x2="330" y2="180" stroke="#10B981" stroke-width="3"/>
+  <line x1="160" y1="280" x2="330" y2="180" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <line x1="330" y1="180" x2="380" y2="300" stroke="#10B981" stroke-width="3"/>
+  <line x1="160" y1="280" x2="380" y2="300" stroke="#F59E0B" stroke-width="2"/>
+
+  <!-- Node 0 -->
+  <circle cx="120" cy="160" r="18" fill="#6366F1" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="120" y="165" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" text-anchor="middle">S</text>
+
+  <!-- Node 1 -->
+  <circle cx="220" cy="140" r="18" fill="#141A29" stroke="#6366F1" stroke-width="2"/>
+  <text x="220" y="145" fill="#818CF8" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" text-anchor="middle">1</text>
+
+  <!-- Node 2 -->
+  <circle cx="160" cy="280" r="18" fill="#141A29" stroke="#F59E0B" stroke-width="2"/>
+  <text x="160" y="285" fill="#F59E0B" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" text-anchor="middle">2</text>
+
+  <!-- Node 3 (Active) -->
+  <circle cx="330" cy="180" r="20" fill="#10B981" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="330" y="185" fill="#064E3B" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" text-anchor="middle">3</text>
+
+  <!-- Target Node -->
+  <circle cx="380" cy="300" r="18" fill="#141A29" stroke="#10B981" stroke-width="2"/>
+  <text x="380" y="305" fill="#10B981" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" text-anchor="middle">T</text>
+
+  <text x="85" y="415" fill="#10B981" font-family="'JetBrains Mono', monospace" font-size="11">Shortest Path Cost: 14 (O(E + V log V))</text>
+
+  <!-- Right Side: C++ / WASM Memory Stack -->
+  <rect x="465" y="95" width="270" height="340" rx="10" fill="#080B11" stroke="rgba(255, 255, 255, 0.06)"/>
+  <text x="485" y="125" fill="#818CF8" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="600">// DP TABLE / MEMORY</text>
+
+  <!-- DP Matrix Preview -->
+  <rect x="485" y="145" width="230" height="150" rx="6" fill="#141A29"/>
+  <text x="500" y="170" fill="#38BDF8" font-family="'JetBrains Mono', monospace" font-size="10">i \ j   [0]   [1]   [2]   [3]</text>
+  <text x="500" y="195" fill="#CBD5E1" font-family="'JetBrains Mono', monospace" font-size="10"> 0  |    0     0     0     0</text>
+  <text x="500" y="220" fill="#CBD5E1" font-family="'JetBrains Mono', monospace" font-size="10"> 1  |    0     4     4     4</text>
+  <text x="500" y="245" fill="#10B981" font-family="'JetBrains Mono', monospace" font-size="10"> 2  |    0     4     7     9 ← opt</text>
+  <text x="500" y="270" fill="#CBD5E1" font-family="'JetBrains Mono', monospace" font-size="10"> 3  |    0     4     7    14</text>
+
+  <rect x="485" y="310" width="230" height="105" rx="6" fill="#0A0D14"/>
+  <text x="495" y="335" fill="#10B981" font-family="'JetBrains Mono', monospace" font-size="10">[WASM] Heap Allocated: 1.2MB</text>
+  <text x="495" y="360" fill="#F8FAFC" font-family="'JetBrains Mono', monospace" font-size="10">[EXEC] Step 18 of 24 (60 FPS)</text>
+  <text x="495" y="385" fill="#F59E0B" font-family="'JetBrains Mono', monospace" font-size="10">[MEM] State rewind stack ready</text>
+</svg>

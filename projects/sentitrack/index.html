@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SentiTrack — Multilingual Sentiment Transformer Live Demo</title>
+  <link rel="stylesheet" href="../../css/style.css" />
+  <link rel="stylesheet" href="../../css/animations.css" />
+  <style>
+    body { padding-top: 2rem; }
+    .demo-container { max-width: 1080px; margin: 0 auto; padding: 1.5rem; }
+    .demo-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-subtle); }
+    .demo-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 2rem; }
+    .card-panel { background: var(--bg-surface); border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 1.75rem; }
+    .token-chip { display: inline-block; padding: 0.25rem 0.6rem; border-radius: 4px; background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.3); font-family: var(--font-mono); font-size: 0.8rem; margin: 0.25rem; }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    <div class="demo-header">
+      <div>
+        <a href="../../index.html" class="btn-copy-email" style="display: inline-block; margin-bottom: 0.5rem;">← Back to Portfolio</a>
+        <h1 style="font-size: 1.8rem; font-weight: 800; color: var(--text-primary);">SentiTrack: NLP Sentiment Hub</h1>
+        <p style="color: var(--text-secondary); font-size: 0.95rem;">Interactive RoBERTa Transformer Live Inference</p>
+      </div>
+      <div style="font-family: var(--font-mono); color: #10B981; font-size: 0.85rem;">[TRANSFORMER READY]</div>
+    </div>
+
+    <div class="demo-grid">
+      <!-- Input Text Area -->
+      <div class="card-panel">
+        <label class="input-label" style="font-size: 0.9rem; margin-bottom: 0.5rem;">// Input Sentence or Prompt</label>
+        <textarea id="nlpInput" class="input-field" style="height: 120px; font-size: 1rem; margin-bottom: 1rem;">The asynchronous batch processing optimization reduced latency dramatically. Excellent performance!</textarea>
+        
+        <button type="button" class="btn-hero-primary" id="analyzeBtn" style="width: 100%;">
+          Run Model Inference ⚡
+        </button>
+
+        <h4 style="font-size: 0.9rem; font-weight: 700; margin: 1.5rem 0 0.5rem 0; color: var(--text-secondary);">Tokenization Breakdown</h4>
+        <div id="tokenContainer">
+          <span class="token-chip">The</span>
+          <span class="token-chip">asynchronous</span>
+          <span class="token-chip">batch</span>
+          <span class="token-chip">processing</span>
+          <span class="token-chip">dramatically</span>
+          <span class="token-chip">!</span>
+        </div>
+      </div>
+
+      <!-- Output Metrics -->
+      <div class="card-panel">
+        <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1.25rem;">Classification Confidence</h3>
+
+        <div style="margin-bottom: 1.25rem;">
+          <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.85rem; margin-bottom: 0.35rem;">
+            <span>POSITIVE</span>
+            <span id="posScore" style="color: #10B981; font-weight: 700;">96.4%</span>
+          </div>
+          <div style="width: 100%; height: 10px; background: rgba(255,255,255,0.08); border-radius: 5px; overflow: hidden;">
+            <div id="posBar" style="width: 96.4%; height: 100%; background: #10B981; transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 1.25rem;">
+          <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.85rem; margin-bottom: 0.35rem;">
+            <span>NEUTRAL</span>
+            <span id="neuScore" style="color: #F59E0B; font-weight: 700;">2.8%</span>
+          </div>
+          <div style="width: 100%; height: 10px; background: rgba(255,255,255,0.08); border-radius: 5px; overflow: hidden;">
+            <div id="neuBar" style="width: 2.8%; height: 100%; background: #F59E0B; transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.85rem; margin-bottom: 0.35rem;">
+            <span>NEGATIVE</span>
+            <span id="negScore" style="color: #EF4444; font-weight: 700;">0.8%</span>
+          </div>
+          <div style="width: 100%; height: 10px; background: rgba(255,255,255,0.08); border-radius: 5px; overflow: hidden;">
+            <div id="negBar" style="width: 0.8%; height: 100%; background: #EF4444; transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+
+        <div style="padding: 0.75rem; background: #0A0D14; border-radius: 6px; font-family: var(--font-mono); font-size: 0.8rem; color: #94A3B8;">
+          ⚡ Latency: <span id="infLatency" style="color: #10B981;">14.2 ms</span> · Model: <span style="color: #818CF8;">RoBERTa-base-uncased</span>
+        </div>
+
+        <a href="https://github.com/yourusername/sentitrack" target="_blank" rel="noopener noreferrer" class="btn-hero-secondary" style="margin-top: 1.5rem; width: 100%; text-align: center; display: block;">
+          GitHub Repository ↗
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("analyzeBtn").onclick = () => {
+      const text = document.getElementById("nlpInput").value;
+      const words = text.split(/\s+/).filter(Boolean);
+      
+      const tokenContainer = document.getElementById("tokenContainer");
+      tokenContainer.innerHTML = words.map(w => `<span class="token-chip">${w}</span>`).join("");
+
+      // Simulated dynamic sentiment inference
+      const lower = text.toLowerCase();
+      let pos = 50, neu = 30, neg = 20;
+
+      if (lower.includes("good") || lower.includes("great") || lower.includes("excellent") || lower.includes("reduced latency") || lower.includes("best")) {
+        pos = Math.floor(88 + Math.random() * 11);
+        neu = Math.floor(Math.random() * (100 - pos));
+        neg = 100 - pos - neu;
+      } else if (lower.includes("bad") || lower.includes("slow") || lower.includes("error") || lower.includes("bug")) {
+        neg = Math.floor(85 + Math.random() * 12);
+        neu = Math.floor(Math.random() * (100 - neg));
+        pos = 100 - neg - neu;
+      } else {
+        neu = Math.floor(65 + Math.random() * 20);
+        pos = Math.floor(Math.random() * (100 - neu));
+        neg = 100 - neu - pos;
+      }
+
+      document.getElementById("posScore").textContent = pos + "%";
+      document.getElementById("posBar").style.width = pos + "%";
+      document.getElementById("neuScore").textContent = neu + "%";
+      document.getElementById("neuBar").style.width = neu + "%";
+      document.getElementById("negScore").textContent = neg + "%";
+      document.getElementById("negBar").style.width = neg + "%";
+      document.getElementById("infLatency").textContent = (12.5 + Math.random() * 4).toFixed(1) + " ms";
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuroSeg — Real-Time Edge Segmentation Live Demo</title>
+  <link rel="stylesheet" href="../../css/style.css" />
+  <link rel="stylesheet" href="../../css/animations.css" />
+  <style>
+    body { padding-top: 2rem; }
+    .demo-container { max-width: 1080px; margin: 0 auto; padding: 1.5rem; }
+    .demo-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-subtle); }
+    .demo-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 2rem; }
+    .canvas-panel { background: #080B11; border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 1.5rem; position: relative; }
+    .controls-panel { background: var(--bg-surface); border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 1.5rem; }
+    .live-canvas { width: 100%; height: 360px; background: #05070A; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); display: block; }
+    .stat-row { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border-subtle); font-family: var(--font-mono); font-size: 0.88rem; }
+    .btn-action { margin-top: 1rem; width: 100%; }
+    .badge-live { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(16, 185, 129, 0.15); color: #10B981; font-family: var(--font-mono); font-size: 0.75rem; }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    <div class="demo-header">
+      <div>
+        <a href="../../index.html" class="btn-copy-email" style="display: inline-block; margin-bottom: 0.5rem;">← Back to Portfolio</a>
+        <h1 style="font-size: 1.8rem; font-weight: 800; color: var(--text-primary);">NeuroSeg: Real-Time Edge Segmentation</h1>
+        <p style="color: var(--text-secondary); font-size: 0.95rem;">Interactive TensorRT & MobileNetV3-UNet Inference Simulation</p>
+      </div>
+      <div class="badge-live">
+        <span style="width: 8px; height: 8px; border-radius: 50%; background: #10B981; animation: blink 1s infinite;"></span>
+        SIMULATION ACTIVE
+      </div>
+    </div>
+
+    <div class="demo-grid">
+      <!-- Left: Interactive Canvas -->
+      <div class="canvas-panel">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <span style="font-family: var(--font-mono); font-size: 0.85rem; color: #818CF8;">// VISION FEED & SEGMENTATION MASK</span>
+          <span id="fpsCounter" style="font-family: var(--font-mono); font-size: 0.85rem; color: #10B981;">89.4 FPS</span>
+        </div>
+        <canvas id="segCanvas" class="live-canvas" width="600" height="360"></canvas>
+        <div style="margin-top: 1rem; display: flex; gap: 0.75rem;">
+          <button type="button" class="btn-hero-secondary btn-sm" id="toggleMaskBtn" style="font-size: 0.8rem;">Toggle Mask Layer</button>
+          <button type="button" class="btn-hero-secondary btn-sm" id="toggleBoxBtn" style="font-size: 0.8rem;">Toggle Bounding Boxes</button>
+          <button type="button" class="btn-hero-primary btn-sm" id="pauseBtn" style="font-size: 0.8rem;">Pause/Resume Feed</button>
+        </div>
+      </div>
+
+      <!-- Right: Model Metrics & Controls -->
+      <div class="controls-panel">
+        <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1rem;">Inference Telemetry</h3>
+
+        <div class="stat-row">
+          <span style="color: var(--text-muted);">Backbone Architecture</span>
+          <span style="color: var(--text-primary);">MobileNetV3-UNet</span>
+        </div>
+        <div class="stat-row">
+          <span style="color: var(--text-muted);">Quantization Mode</span>
+          <span style="color: #10B981;">INT8 TensorRT</span>
+        </div>
+        <div class="stat-row">
+          <span style="color: var(--text-muted);">Mean IoU (Benchmark)</span>
+          <span style="color: #818CF8;">82.4%</span>
+        </div>
+        <div class="stat-row">
+          <span style="color: var(--text-muted);">Inference Latency</span>
+          <span id="latencyVal" style="color: #10B981;">11.4 ms</span>
+        </div>
+        <div class="stat-row">
+          <span style="color: var(--text-muted);">VRAM Footprint</span>
+          <span style="color: #F59E0B;">384 MB</span>
+        </div>
+
+        <div style="margin-top: 1.5rem;">
+          <label style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary); display: block; margin-bottom: 0.4rem;">
+            Confidence Threshold: <span id="threshVal" style="color: #818CF8;">0.75</span>
+          </label>
+          <input type="range" id="threshSlider" min="0.1" max="0.99" step="0.05" value="0.75" style="width: 100%; accent-color: #6366F1;" />
+        </div>
+
+        <a href="https://github.com/yourusername/neuroseg" target="_blank" rel="noopener noreferrer" class="btn-hero-secondary btn-action" style="text-align: center; display: block; margin-top: 1.5rem;">
+          View Repository on GitHub ↗
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("segCanvas");
+    const ctx = canvas.getContext("2d");
+    let showMask = true;
+    let showBox = true;
+    let isRunning = true;
+    let frame = 0;
+
+    document.getElementById("toggleMaskBtn").onclick = () => showMask = !showMask;
+    document.getElementById("toggleBoxBtn").onclick = () => showBox = !showBox;
+    document.getElementById("pauseBtn").onclick = () => isRunning = !isRunning;
+    document.getElementById("threshSlider").oninput = (e) => {
+      document.getElementById("threshVal").textContent = parseFloat(e.target.value).toFixed(2);
+    };
+
+    function render() {
+      if (isRunning) {
+        frame++;
+        ctx.fillStyle = "#080B11";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Grid Lines
+        ctx.strokeStyle = "rgba(255,255,255,0.04)";
+        for(let x = 0; x < canvas.width; x += 30) {
+          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+        }
+        for(let y = 0; y < canvas.height; y += 30) {
+          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+        }
+
+        const objX = 150 + Math.sin(frame * 0.04) * 80;
+        const objY = 120 + Math.cos(frame * 0.03) * 40;
+        const obj2X = 380 + Math.cos(frame * 0.03) * 70;
+        const obj2Y = 160 + Math.sin(frame * 0.04) * 50;
+
+        // Segmentation Masks
+        if (showMask) {
+          ctx.fillStyle = "rgba(99, 102, 241, 0.45)";
+          ctx.beginPath();
+          ctx.ellipse(objX, objY, 65, 45, Math.PI / 6, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.fillStyle = "rgba(16, 185, 129, 0.4)";
+          ctx.beginPath();
+          ctx.ellipse(obj2X, obj2Y, 75, 55, -Math.PI / 8, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        // Bounding Boxes
+        if (showBox) {
+          ctx.strokeStyle = "#6366F1";
+          ctx.lineWidth = 2;
+          ctx.strokeRect(objX - 75, objY - 55, 150, 110);
+          ctx.fillStyle = "#6366F1";
+          ctx.fillRect(objX - 75, objY - 75, 110, 20);
+          ctx.fillStyle = "#FFFFFF";
+          ctx.font = "11px 'JetBrains Mono', monospace";
+          ctx.fillText("OBJECT_01 0.97", objX - 70, objY - 61);
+
+          ctx.strokeStyle = "#10B981";
+          ctx.strokeRect(obj2X - 85, obj2Y - 65, 170, 130);
+          ctx.fillStyle = "#10B981";
+          ctx.fillRect(obj2X - 85, obj2Y - 85, 115, 20);
+          ctx.fillStyle = "#064E3B";
+          ctx.fillText("SEG_MASK 0.94", obj2X - 80, obj2Y - 71);
+        }
+
+        if (frame % 30 === 0) {
+          document.getElementById("fpsCounter").textContent = (86 + Math.random() * 6).toFixed(1) + " FPS";
+          document.getElementById("latencyVal").textContent = (11.0 + Math.random() * 0.8).toFixed(1) + " ms";
+        }
+      }
+      requestAnimationFrame(render);
+    }
+    render();
+  </script>
+</body>
+</html>
