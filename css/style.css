@@ -522,10 +522,10 @@ section {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 15%;
+  object-position: center center;
   display: block;
-  transform: scale(1.35);
-  transform-origin: center 30%;
+  transform: scale(1.3);
+  transform-origin: center center;
 }
 
 .hero-photo-info {
