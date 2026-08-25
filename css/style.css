@@ -503,26 +503,28 @@ section {
   width: 250px;
   height: 250px;
   border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(135deg, #6366F1 0%, #10B981 50%, #F59E0B 100%);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
   z-index: 1;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  flex-shrink: 0;
 }
 
-.hero-photo-wrapper::before {
-  content: '';
-  position: absolute;
-  inset: -4px;
+.hero-photo-inner {
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
-  background: linear-gradient(135deg, #6366F1 0%, #10B981 50%, #F59E0B 100%);
-  z-index: -1;
+  overflow: hidden;
+  background: var(--bg-secondary);
 }
 
 .hero-photo-img {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
   object-fit: cover;
   object-position: center top;
   display: block;
+  border-radius: 50%;
 }
 
 .hero-photo-info {
